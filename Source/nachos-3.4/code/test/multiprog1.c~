@@ -1,0 +1,17 @@
+#include "syscall.h"
+#include "copyright.h"
+
+int main(void)
+{
+	int i = 0;
+	CreateSemaphore("Console", 1);
+	Exec("./test/multiprog2");
+	
+	for (i = 0; i < 10; i++)
+	{
+		Wait("Console");
+		Write("Chuong trinh 1.\n", 20, ConsoleOutput);
+		Signal("Console");
+	}
+	return 0;
+}

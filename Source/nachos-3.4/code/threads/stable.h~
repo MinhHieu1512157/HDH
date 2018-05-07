@@ -1,0 +1,56 @@
+#ifndef STABLE_H
+#define STABLE_H
+#include "bitmap.h"
+#include "thread.h"
+#include "synch.h"
+#include <string.h>
+
+#define MAX_SEMAPHORE 10
+
+class Sem{
+private:
+	char name[50];
+	Semaphore *sem; // Tao semaphore quan ly
+public:
+	// Khoi tao doi tuong Sem, mac dinh bang null
+	// nho khoi tao bm su dung
+	Sem(char* na, int i){
+	strcpy(this->name,na);
+	sem = new Semaphore(name,i);
+	}
+	
+	// huy cac doi tuong da tao
+	~Sem(){
+		delete sem;
+	}
+	
+	// thuc hien thao tac cho
+	void wait(){
+	sem->P();
+	}
+	
+	// thuc hien giai phong semaphore
+	void signal(){
+	sem->V();
+	}
+	
+	// tra ve ten cua semaphore
+	char* GetName(){	
+	return name;
+};
+
+class STable {
+private:
+	BitMap* bm; // quan ly cac slot trong
+	Sem* semTab[MAX_SEMAPHORE]; // quan ly toi da 10 doi tuong sem	
+public:
+	// khoi tao size doi tuong Sem de quan ly 10 Semaphore. Gán giá trị ban đầu là null
+	// nho khoi tao bm su dung
+	STable();
+	~STable(); // huy cac doi tuong da tao
+	int Create(char* name, int init); // kiem tra semaphore "name" chua ton tai thi tao semaphore moi. Nguoc lai, bao loi
+	int Wait(char* name);  // neu ton tai semaphore "name" thi goi this->P() de thuc thi. Nguoc lai, bao loi
+	int Signal(char* name); // neu ton tai semaphore "name" thi goi this->V() de thuc thi. Nguoc lai, bao loi
+	int FindFreeSlot(int id); // tim slot trong
+};
+ #endif

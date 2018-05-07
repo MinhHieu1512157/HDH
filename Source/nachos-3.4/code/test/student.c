@@ -1,0 +1,49 @@
+//#include "syscall.h"
+
+int atoi(char *strNum) {
+	short first = 1;
+	int ret = 0, i = 0;
+	char ch, cSign = ' ';
+	while (strNum[i] != '\0') {
+		ch = strNum[i++];
+		if (ch == '-' || ch == '+') {
+			if (first && cSign == ' ') cSign = ch;
+			else break;
+		} else {
+			ret *= 10;
+			ret += ch - 48;
+		}
+		first = 0;
+	}
+	if (cSign == '-' && ret) ret = -ret;
+	return ret;
+}
+
+void main() {
+	char msg[256];
+	int faucet, i;
+	int pid;
+	int info[3]; //0 -> thoi diem, 1 -> so thu tu sinh vien, 2 -> lit nuoc can lay
+	//for (i = 2; i > -1;) {
+		//if (!IsEmptyMsg())
+	//}
+	while (1) { //doi thong diep toi
+		if (!IsEmptyMsg()) {
+			info[0] = GetMsg();
+			PrintInt(info[0]);
+			break;
+		}
+	}
+	Wait("Student");
+	while (1) { //doi thong diep toi
+		if (!IsEmptyMsg()) {
+			faucet = GetMsg();
+			PrintInt(faucet);
+			break;
+		}
+	}
+	pid = Exec("./test/faucet");
+	Join(pid);
+	SetMsg(0, faucet); //bao cho main la voi nuoc nay da lay xong
+	Signal("Student");
+}

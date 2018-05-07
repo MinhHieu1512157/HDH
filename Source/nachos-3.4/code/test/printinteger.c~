@@ -1,0 +1,8 @@
+#include "syscall.h"
+
+int main()
+{
+	int a = 1312016;
+	PrintInteger(a);
+	return 0;
+}

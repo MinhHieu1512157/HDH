@@ -1,0 +1,16 @@
+#include "syscall.h"
+#include "copyright.h"
+
+int main(void)
+{
+	int i = 0;
+	for (i = 0; i < 10; i++)
+	{
+		//Wait("Console");
+		Write("Chuong trinh 2.1\n", 20, ConsoleOutput);
+		Write("Chuong trinh 2.2\n", 20, ConsoleOutput);
+		//Signal("Console");
+	}
+	
+	return 0;
+}

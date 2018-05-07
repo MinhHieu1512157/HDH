@@ -1,0 +1,18 @@
+#include "copyright.h"
+#include "system.h"
+#include "syscall.h"
+
+int main()
+{
+	PrintString("\n-----------THONG TIN NHOM----------------------");
+	PrintString("\n1. Nguyen Thanh Phong - 1312431");
+	PrintString("\n2. Vo Tran Do - 1312141");
+	PrintString("\n3. ");
+	PrintString("\n-----------------------------------------------");
+	PrintString("\n\n-------------------SORT---------------------");
+	PrintString("\nSap xep 1 day so nguyen n phan tu (n <= 100) theo thu tu giam");
+	PrintString("\ndan, day so nguyen do nguoi dung nhap vao tu ban phim");
+	PrintString("\n\n-------------------ASCII--------------------");
+	PrintString("\nIn ra bang ma ASCII");
+	return 0;
+}

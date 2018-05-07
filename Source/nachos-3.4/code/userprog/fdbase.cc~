@@ -1,0 +1,5 @@
+// 1512479 - 1512157
+// modified by Nguyen Duy Tam - Cao Nguyen Minh Hieu
+
+#include "fdbase.h"
+FDBase::~FDBase(){;}

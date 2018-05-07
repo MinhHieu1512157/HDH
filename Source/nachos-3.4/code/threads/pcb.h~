@@ -1,0 +1,37 @@
+#ifndef PCB_H
+#define PCB_H
+#include "thread.h"
+#include "synch.h"
+
+extern void StartProcess(int id);
+
+class PCB{
+private:
+        Semaphore *joinsem;//semaphore cho qua trinh join
+        Semaphore *exitsem;//semaphore cho qua trinh exit
+        Semaphore *mutex;
+        
+        int     exitcode;
+        Thread  *thread;
+        int     pid;
+        int     numwait ;// so tien trinh con da join
+public:
+        int     parentID; // ID cua tien trinh cha
+        char    *filename;//luu filename cua tien trinh ,phuc vu cho ham Fork
+        int priority;
+        PCB();  //main
+        PCB(int id);
+        ~PCB();
+        int Exec(char *filename,int pid);// nap tien trinh co ten luu trong bien filename và //processID sẽ là pid
+        int GetID() {return pid;}
+        int GetNumWait();
+        void JoinWait();
+        void ExitWait();
+        void JoinRelease();
+        void ExitRelease();
+        void IncNumWait();
+        void DecNumWait();
+        void SetExitCode(int ec){exitcode = ec;}
+        int GetExitCode(){return exitcode;}
+};
+#endif
